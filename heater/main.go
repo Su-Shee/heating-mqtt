@@ -15,7 +15,6 @@ func ValveHandler(client mqtt.Client, msg mqtt.Message) {
     var temp map[string]interface{}
     _ = json.Unmarshal([]byte(msg.Payload()), &temp)
 
-    //fmt.Printf("%s\n", msg.Payload())
     val := int(temp["level"].(float64))
     fmt.Printf("valve opening level requested: %d\n", val)
     valveHandle <- val
