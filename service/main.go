@@ -1,11 +1,11 @@
 package main
 
 import (
-	"fmt"
-  "os"
-  "time"
-  "encoding/json"
-	"github.com/eclipse/paho.mqtt.golang"
+    "fmt"
+    "os"
+    "time"
+    "encoding/json"
+    "github.com/eclipse/paho.mqtt.golang"
 )
 
 var tempHandle = make(chan float64)
@@ -21,7 +21,7 @@ func TempHandler(client mqtt.Client, msg mqtt.Message) {
 }
 
 type valveLevel struct {
-  Level int `json:"level"`
+    Level int `json:"level"`
 }
 
 func generateValveLevel(agv_temp float64) []byte {

@@ -1,11 +1,11 @@
 package main
 
 import (
-	"fmt"
-  "os"
-  "encoding/json"
-  "time"
-	"github.com/eclipse/paho.mqtt.golang"
+    "fmt"
+    "os"
+    "encoding/json"
+    "time"
+    "github.com/eclipse/paho.mqtt.golang"
 )
 
 var valveHandle = make(chan int)

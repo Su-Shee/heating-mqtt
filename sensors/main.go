@@ -1,18 +1,18 @@
 package main
 
 import (
-	"fmt"
-  "time"
-  "os"
-  "encoding/json"
-  "math/rand"
-	"github.com/eclipse/paho.mqtt.golang"
+    "fmt"
+    "time"
+    "os"
+    "encoding/json"
+    "math/rand"
+    "github.com/eclipse/paho.mqtt.golang"
 )
 
 type Payload struct {
-  SensorID string  `json:"sensorID"`
-  Type     string  `json:"type"`
-  Value    float64 `json:"value"`
+    SensorID string  `json:"sensorID"`
+    Type     string  `json:"type"`
+    Value    float64 `json:"value"`
 }
 
 func generatePayload() []byte {
@@ -27,26 +27,26 @@ func generatePayload() []byte {
 }
 
 func main() {
-	opts := mqtt.NewClientOptions()
-  opts.AddBroker("0.0.0.0:1883")
-  opts.SetClientID("sensor nr one")
-	client := mqtt.NewClient(opts)
+    opts := mqtt.NewClientOptions()
+    opts.AddBroker("0.0.0.0:1883")
+    opts.SetClientID("sensor nr one")
+    client := mqtt.NewClient(opts)
 
-  token := client.Connect();
+    token := client.Connect();
 
-  if token.Wait() && token.Error() != nil {
-      fmt.Println(token.Error())
-      os.Exit(1)
-	}
+    if token.Wait() && token.Error() != nil {
+        fmt.Println(token.Error())
+        os.Exit(1)
+    }
 
-	for {
-      msg := generatePayload()
-      token := client.Publish("readings/temperature", 0, false, msg)
-      token.Wait()
-      time.Sleep(5 * time.Second)
-	}
+    for {
+        msg := generatePayload()
+        token := client.Publish("readings/temperature", 0, false, msg)
+        token.Wait()
+        time.Sleep(5 * time.Second)
+    }
 
-  client.Disconnect(250)
+    client.Disconnect(250)
 }
 
 
