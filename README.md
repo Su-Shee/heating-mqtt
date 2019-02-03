@@ -1,5 +1,5 @@
 ## How does it work?
-* A little fake sensors publishes its (randomly generated within a range)
+* A little fake sensor publishes its (randomly generated within a range)
   temperature readings to mosquitto every couple of seconds.
 
 * A service "in the middle" determines temperature by subscribing
@@ -12,11 +12,12 @@ I like to go by "make it work, make it right, make it fast/secure/pretty" - so
 I've aimed for a working heating cycle above else and publishers and
 subscribers actually reacting to each other via mosquitto as message broker. I
 left out actually calculating valve openings by percentage; I'm just opening
-th heater within mock-up range of temperature.
+the heater within mock-up range of temperature.
 
 Next steps are clearly "better code" in the sense of improved abstractions so
 that publishing, subscribing, generating (or rather reading values in a more
-realistic scenario) is more easily pluggable.
+realistic scenario) is more easily pluggable. Also, just now (22:56) I've realized
+that I could have made a channel instead of an endless loop...
 
 The service in the middle could serve all kinds of things as a HTTP-based API:
 a commandline client, web-based UIs, other tools...
