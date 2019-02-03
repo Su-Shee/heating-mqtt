@@ -10,6 +10,7 @@
 * the fake sensors fake reading the temperature and continue publishing their
   readings. :) they just do their thing continuously
 
+## Installation/Build
 
 ## More Ideas
 * arduino with a cheap temperature sensor + mqtt library
