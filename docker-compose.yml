@@ -1,0 +1,26 @@
+version: '2'
+services:
+  mosquitto:
+    image: toke/mosquitto
+    network_mode: "host"
+
+  service:
+    build:
+      context: ./service
+      dockerfile: Dockerfile
+    image: golang:latest
+    network_mode: "host"
+
+  heater:
+    build:
+      context: ./heater
+      dockerfile: Dockerfile
+    image: golang:latest
+    network_mode: "host"
+
+  sensors:
+    build:
+      context: ./heater
+      dockerfile: Dockerfile
+    image: golang:latest
+    network_mode: "host"
