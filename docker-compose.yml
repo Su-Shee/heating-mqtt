@@ -7,17 +7,14 @@ services:
   service:
     build:
       context: ./service
-      dockerfile: Dockerfile
     network_mode: "host"
 
   heater:
     build:
       context: ./heater
-      dockerfile: Dockerfile
     network_mode: "host"
 
   sensors:
     build:
       context: ./heater
-      dockerfile: Dockerfile
     network_mode: "host"
