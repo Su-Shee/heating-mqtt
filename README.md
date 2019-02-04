@@ -66,39 +66,6 @@ subdirectory, it'll just run. After that, you can just watch the three apps
 subscribing, publishing and heating. :)
 
 
-### Build and run via Docker containers
-In order to allow connections to the broker properly, the containers need to
-be started with --net=host:
-
-```
-docker run -it -p 1883:1883 -p 9001:9001 --name=mosquitto --net=host toke/mosquitto
-```
-
-The heating service containers can be build like this:
-
-```
-docker build -t service .
-docker run -ti --net=host service <containerid>
-```
-
-```
-docker build -t heater .
-docker run -ti --net=host heater <containerid>
-```
-
-```
-docker build -t sensors .
-docker run -ti --net=host service <containerid>
-```
-
-If you start them in three different terminals, you can watch them publishing,
-subscribing and heating. :)
-
-There is also a basic docker-compose file available which at the moment has
-the usal "distributed" problem: there is no quarantee which container gets
-started and run in what order and they are not waiting for each other to
-finish. The three tiny apps are not yet prepared with proper delayed retries
-to actually wait themselves until they reach the broker.
 
 (Deployment to Kubernetes has the same problem - there is however the concept
 of a pre- and post hook in order to do something before and after a pod has
