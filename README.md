@@ -46,21 +46,8 @@ Considering that we are talking about tiny sensors, IPv6 might actually be
 really useful here.
 
 ## Installation/Build
-### Manually:
-1) docker run -it -p 1883:1883 --name=mosquitto  toke/mosquitto as recommended
-2) go get dependencies for the eclipse "paho" mqtt library:
-```
-go get golang.org/x/net/websocket
-go get golang.org/x/net/proxy
-```
-3) get the main library to handle MQTT:
-```
-go get github.com/eclipse/paho.mqtt.golang
-```
-4) run "go build" in the service/, sensors/ and heater/ subdirectory
-5) start ``./service``, ``./sensors``, ``./heater`` in the respective
-subdirectory, it'll just run. Watch them in three different terminal
-publishing, subscribing and heating. :)
+### via docker-compose:
+Run: `docker-compose up --build` from the root of this repository
 
 ### Use the Makefile to build locally:
 You'd still nedd the broker up and running:
