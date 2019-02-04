@@ -16,5 +16,5 @@ services:
 
   sensors:
     build:
-      context: ./heater
+      context: ./sensors
     network_mode: "host"
