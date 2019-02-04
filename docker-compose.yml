@@ -1,4 +1,4 @@
-version: '2'
+version: '3.2'
 services:
   mosquitto:
     image: toke/mosquitto
@@ -8,19 +8,16 @@ services:
     build:
       context: ./service
       dockerfile: Dockerfile
-    image: golang:latest
     network_mode: "host"
 
   heater:
     build:
       context: ./heater
       dockerfile: Dockerfile
-    image: golang:latest
     network_mode: "host"
 
   sensors:
     build:
       context: ./heater
       dockerfile: Dockerfile
-    image: golang:latest
     network_mode: "host"
