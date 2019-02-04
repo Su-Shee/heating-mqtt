@@ -8,13 +8,16 @@ services:
     build:
       context: ./service
     network_mode: "host"
+    restart: on-failure
 
   heater:
     build:
       context: ./heater
     network_mode: "host"
+    restart: on-failure
 
   sensors:
     build:
       context: ./sensors
     network_mode: "host"
+    restart: on-failure
