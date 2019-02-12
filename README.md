@@ -46,21 +46,8 @@ Considering that we are talking about tiny sensors, IPv6 might actually be
 really useful here.
 
 ## Installation/Build
-### Manually:
-1) docker run -it -p 1883:1883 --name=mosquitto  toke/mosquitto as recommended
-2) go get dependencies for the eclipse "paho" mqtt library:
-```
-go get golang.org/x/net/websocket
-go get golang.org/x/net/proxy
-```
-3) get the main library to handle MQTT:
-```
-go get github.com/eclipse/paho.mqtt.golang
-```
-4) run "go build" in the service/, sensors/ and heater/ subdirectory
-5) start ``./service``, ``./sensors``, ``./heater`` in the respective
-subdirectory, it'll just run. Watch them in three different terminal
-publishing, subscribing and heating. :)
+### via docker-compose:
+Run: `docker-compose up --build` from the root of this repository
 
 ### Use the Makefile to build locally:
 You'd still nedd the broker up and running:
@@ -79,39 +66,6 @@ subdirectory, it'll just run. After that, you can just watch the three apps
 subscribing, publishing and heating. :)
 
 
-### Build and run via Docker containers
-In order to allow connections to the broker properly, the containers need to
-be started with --net=host:
-
-```
-docker run -it -p 1883:1883 -p 9001:9001 --name=mosquitto --net=host toke/mosquitto
-```
-
-The heating service containers can be build like this:
-
-```
-docker build -t service .
-docker run -ti --net=host service <containerid>
-```
-
-```
-docker build -t heater .
-docker run -ti --net=host heater <containerid>
-```
-
-```
-docker build -t sensors .
-docker run -ti --net=host service <containerid>
-```
-
-If you start them in three different terminals, you can watch them publishing,
-subscribing and heating. :)
-
-There is also a basic docker-compose file available which at the moment has
-the usal "distributed" problem: there is no quarantee which container gets
-started and run in what order and they are not waiting for each other to
-finish. The three tiny apps are not yet prepared with proper delayed retries
-to actually wait themselves until they reach the broker.
 
 (Deployment to Kubernetes has the same problem - there is however the concept
 of a pre- and post hook in order to do something before and after a pod has
